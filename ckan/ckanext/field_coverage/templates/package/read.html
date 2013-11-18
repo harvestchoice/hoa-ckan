@@ -1,0 +1,13 @@
+{% ckan_extends %}
+
+{% block package_description %}
+  {{ super() }}
+
+  {# Add our custom coverage_code field to the dataset read page. #}
+  {% if pkg.get('coverage_code') %}
+    <section id="dataset-coverage_code" class="resources module-content">
+    <p><strong>Coverage</strong>: {{ pkg.coverage_code[0] }}</p>
+    </section>
+  {% endif %}
+
+{% endblock %}

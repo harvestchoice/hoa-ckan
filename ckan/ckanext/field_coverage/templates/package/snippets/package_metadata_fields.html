@@ -1,0 +1,23 @@
+{% ckan_extends %}
+
+{# Remove 'free extras' from the package form. If you're using
+convert_to/from_extras() as we are with our 'custom_text' field below then
+you need to remove free extras from the form, or editing your custom field
+won't work. #}
+
+{% block package_metadata_fields %}
+
+  <div class="control-group">
+    <label class="control-label" for="field-coverage_code">{{ _("Coverage") }}</label>
+    <div class="controls">
+      <select id="field-coverage_code" name="coverage_code" data-module="autocomplete">
+        {% for coverage_code in h.coverage_codes()  %}
+          <option value="{{ coverage_code }}" {% if coverage_code in data.get('coverage_code', []) %}selected="selected"{% endif %}>{{ coverage_code }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  {{ super() }}
+
+{% endblock %}

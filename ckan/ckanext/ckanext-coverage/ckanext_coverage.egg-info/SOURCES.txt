@@ -1,0 +1,10 @@
+setup.py
+ckanext/__init__.py
+ckanext/coverage/__init__.py
+ckanext_coverage.egg-info/PKG-INFO
+ckanext_coverage.egg-info/SOURCES.txt
+ckanext_coverage.egg-info/dependency_links.txt
+ckanext_coverage.egg-info/entry_points.txt
+ckanext_coverage.egg-info/namespace_packages.txt
+ckanext_coverage.egg-info/not-zip-safe
+ckanext_coverage.egg-info/top_level.txt
