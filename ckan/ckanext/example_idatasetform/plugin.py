@@ -162,27 +162,31 @@ class ExampleIDatasetFormPlugin(plugins.SingletonPlugin,
                 })
         # Add our custom_test metadata field to the schema, this one will use
         # convert_to_extras instead of convert_to_tags.
+#        schema.update({
+#                'publisher': [tk.get_validator('ignore_missing'),
+#                    tk.get_converter('convert_to_extras')]
+#                })
+#	schema.update({
+#                'pub_date': [tk.get_validator('ignore_missing'),
+#                    tk.get_converter('convert_to_extras')]
+#                })
+#	schema.update({
+#                'time_start': [tk.get_validator('ignore_missing'),
+#                    tk.get_converter('convert_to_extras')]
+#                })
+#	schema.update({
+#                'time_end': [tk.get_validator('ignore_missing'),
+#                    tk.get_converter('convert_to_extras')]
+#                })
+#	schema.update({
+#                'time_freq': [tk.get_validator('ignore_missing'),
+#                    tk.get_converter('convert_to_tags')('time_freqs')]
+#                })
         schema.update({
-                'publisher': [tk.get_validator('ignore_missing'),
+                'citation': [tk.get_validator('ignore_missing'),
                     tk.get_converter('convert_to_extras')]
-                })
-	schema.update({
-                'pub_date': [tk.get_validator('ignore_missing'),
-                    tk.get_converter('convert_to_extras')]
-                })
-	schema.update({
-                'time_start': [tk.get_validator('ignore_missing'),
-                    tk.get_converter('convert_to_extras')]
-                })
-	schema.update({
-                'time_end': [tk.get_validator('ignore_missing'),
-                    tk.get_converter('convert_to_extras')]
-                })
-	schema.update({
-                'time_freq': [tk.get_validator('ignore_missing'),
-                    tk.get_converter('convert_to_tags')('time_freqs')]
-                })
-        return schema
+                })        
+	return schema
 
     def create_package_schema(self):
         schema = super(ExampleIDatasetFormPlugin, self).create_package_schema()
@@ -215,28 +219,31 @@ class ExampleIDatasetFormPlugin(plugins.SingletonPlugin,
                 tk.get_validator('ignore_missing')]
             })
 
+#        schema.update({
+#                'publisher': [tk.get_converter('convert_from_extras'),
+#                tk.get_validator('ignore_missing')]
+#                })
+#        schema.update({
+#                'pub_date': [tk.get_converter('convert_from_extras'),
+#                tk.get_validator('ignore_missing')]
+#                })
+#        schema.update({
+#                'time_start': [tk.get_converter('convert_from_extras'),
+#                tk.get_validator('ignore_missing')]
+#                })
+#        schema.update({
+#                'time_end': [tk.get_converter('convert_from_extras'),
+#                tk.get_validator('ignore_missing')]
+#                })
+#        schema.update({
+#                'time_freq': [ 
+#		tk.get_converter('convert_from_tags')('time_freqs'),
+#                tk.get_validator('ignore_missing')]
+#                })
         schema.update({
-                'publisher': [tk.get_converter('convert_from_extras'),
+            'citation': [tk.get_converter('convert_from_extras'),
                 tk.get_validator('ignore_missing')]
-                })
-        schema.update({
-                'pub_date': [tk.get_converter('convert_from_extras'),
-                tk.get_validator('ignore_missing')]
-                })
-        schema.update({
-                'time_start': [tk.get_converter('convert_from_extras'),
-                tk.get_validator('ignore_missing')]
-                })
-        schema.update({
-                'time_end': [tk.get_converter('convert_from_extras'),
-                tk.get_validator('ignore_missing')]
-                })
-        schema.update({
-                'time_freq': [ 
-		tk.get_converter('convert_from_tags')('time_freqs'),
-                tk.get_validator('ignore_missing')]
-                })
-
+            })
         return schema
 
     # These methods just record how many times they're called, for testing

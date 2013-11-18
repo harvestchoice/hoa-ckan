@@ -1,11 +1,20 @@
 {% ckan_extends %}
 
+{# Remove 'free extras' from the package form. If you're using
+convert_to/from_extras() as we are with our 'custom_text' field below then
+you need to remove free extras from the form, or editing your custom field
+won't work. #}
+{% block custom_fields %}
+{% endblock %}
+
 {% block package_metadata_fields %}
+
+{{ super() }}
 
   <div class="control-group">
     <label class="control-label" for="field-country_code">{{ _("Country") }}</label>
     <div class="controls">
-      <select id="field-country_code" name="country_code" data-module="autocomplete">
+      <select id="field-country_code" name="country_code" data-module="autocomplete" autocomplete="off" multiple="multiple" style="width: 334px">
         {% for country_code in h.country_codes()  %}
           <option value="{{ country_code }}" {% if country_code in data.get('country_code', []) %}selected="selected"{% endif %}>{{ country_code }}</option>
         {% endfor %}
@@ -15,14 +24,14 @@
   <div class="control-group">
     <label class="control-label" for="field-coverage_code">{{ _("Coverage") }}</label>
     <div class="controls">
-      <select id="field-coverage_code" name="coverage_code" data-module="autocomplete">
+      <select id="field-coverage_code" name="coverage_code" data-module="autocomplete" autocomplete="off" multiple="multiple" style="width: 334px">
         {% for coverage_code in h.coverage_codes()  %}
           <option value="{{ coverage_code }}" {% if coverage_code in data.get('coverage_code', []) %}selected="selected"{% endif %}>{{ coverage_code }}</option>
         {% endfor %}
       </select>
     </div>
   </div>
-  <div class="control-group">
+{#  <div class="control-group">
     <label class="control-label" for="field-time_freq">{{ _("Time-Frequency") }}</label>
     <div class="controls">
       <select id="field-time_freq" name="time_freq" data-module="autocomplete">
@@ -31,14 +40,10 @@
         {% endfor %}
       </select>
     </div>
-  </div>
-{{ super() }}
+  </div>#}
+
+  {% block package_basic_fields_custom %}
+    {{ form.markdown('citation', label=_('Citation'), id='field-citation', placeholder=_('citation'), value=data.citation, error=errors.citation) }}
+  {% endblock %}
+
 {% endblock %}
-
-{# Remove 'free extras' from the package form. If you're using
-convert_to/from_extras() as we are with our 'custom_text' field below then
-you need to remove free extras from the form, or editing your custom field
-won't work. #} 
-{% block custom_fields %}
-{% endblock %} 
-

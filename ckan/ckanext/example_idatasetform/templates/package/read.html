@@ -4,25 +4,43 @@
   {{ super() }}
 
   {# Add our custom country_code field to the dataset read page. #}
+
   {% if pkg.get('country_code') %}
-    <section id="dataset-country_code" class="resources module-content">
-    <p><strong>Country</strong>: {{ pkg.country_code[0] }}</p>
+    <section id="dataset-country_code" class="tags module-content">
+    <p><strong>Countries</strong>
+        <ul class="tag-list well">
+        {% for cnt_code in pkg.country_code %}
+                <li><a href="{% url_for controller='package', action='search', vocab_country_codes=cnt_code %}">{{ cnt_code }}</a></li>
+        {% endfor %}
+        </ul></p>
     </section>
   {% endif %}
 
   {# Add our custom country_code field to the dataset read page. #}
   {% if pkg.get('coverage_code') %}
-    <section id="dataset-coverage_code" class="resources module-content">
-    <p><strong>Coverage</strong>: {{ pkg.coverage_code[0] }}</p>
+    <section id="dataset-coverage_code" class="tags module-content">
+    <p><strong>Coverage</strong>
+	<ul class="tag-list well">
+        {% for cov_code in pkg.coverage_code %}
+                <li><a href="{% url_for controller='package', action='search', vocab_coverage_codes=cov_code %}">{{ cov_code }}</a></li>
+        {% endfor %}
+        </ul></p>
     </section>
   {% endif %}
 
+  {% if pkg.get('citation') %}
+    <section id="dataset-citation" class="resources module-content">
+    <p><strong>Citation</strong>: {{ pkg.citation }}</p>
+    </section>
+  {% endif %}
+
+
   {# Add our custom country_code field to the dataset read page. #}
-  {% if pkg.get('time_freq') %}
+{#  {% if pkg.get('time_freq') %}
     <section id="dataset-time_freq" class="resources module-content">
     <p><strong>Time frequency</strong>: {{ pkg.time_freq[0] }}</p>
     </section>
   {% endif %}
-
+#}
 
 {% endblock %}

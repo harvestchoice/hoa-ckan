@@ -1,8 +1,0 @@
-{% ckan_extends %}
-
-{% block package_basic_fields_custom %}
-  {{ form.input('publisher', label=_('Publisher'), id='field-publisher', placeholder=_('publisher'), value=data.publisher, error=errors.publisher, classes=['control-medium']) }}
-{{ form.input('pub_date', label=_('Publication Date'), id='field-pub_date', placeholder=_('publication_date'), value=data.pub_date, error=errors.pub_date, classes=['control-medium']) }}
-{{ form.input('time_start', label=_('Timeframe-Start'), id='field-time_start', placeholder=_('timeframe'), value=data.time_start, error=errors.time_start, classes=['control-medium']) }}
-{{ form.input('time_end', label=_('Timeframe-End'), id='field-time_end', placeholder=_('timeframe'), value=data.time_end, error=errors.time_end, classes=['control-medium']) }}
-{% endblock %}
